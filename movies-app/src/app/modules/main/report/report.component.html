@@ -1,0 +1,47 @@
+<ng-container *ngIf="authorized && !loaded">
+    <h1 class="text-center">Loading Report</h1>
+</ng-container>
+<ng-container *ngIf="loaded && !authorized">
+    <h1 class="text-center">You do not have permission to view this page.</h1>
+    <div class="text-center"><a routerLink="/auth/login">Log In</a></div>
+</ng-container>
+<ng-container *ngIf="loaded && authorized">
+    <div class="mb-3 pb-3 border-bottom">
+        <div class="container">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="header">
+                    Welcome, {{user.name}}
+                </div>
+                <button class="btn btn-primary w-100" (click)="openNewEntryDialog()">
+                    Add new movie
+                </button>
+                <div class="category p-3" [ngClass]="{'active':category == cat}" (click)="openCategory(null)">All</div>
+                <ng-container *ngFor="let cat of categories">
+                    <div class="category p-3" [ngClass]="{'active':category == cat}" (click)="openCategory(cat)">{{cat}}</div>
+                </ng-container>
+            </div>
+            <div class="col-9">
+                <h1>Movies</h1>
+                <table class="w-100">
+                    <tr *ngFor="let entry of entries">
+                        <td>{{entry.title}}</td>
+                        <td>{{entry.category}}</td>
+                        <td>
+                            <a *ngIf="entry.imdb" href="{{entry.imdb}}">IMDB Link</a>
+                            <span *ngIf="!entry.imdb">No IMDB Link</span>
+                        </td>
+                        <td>
+                            <a *ngIf="entry.link" href="{{entry.link}}">Other Link</a>
+                            <span *ngIf="!entry.imdb">No Other Link</span>
+                        </td>
+                        <td><button class="btn btn-danger" (click)="deleteEntry(entry)">X</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-container>

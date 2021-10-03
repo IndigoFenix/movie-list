@@ -1,0 +1,50 @@
+<div>
+    <ng-container *ngIf="!sending">
+        <div mat-dialog-title class="text-center">
+            <h1>Add Movie</h1>
+            <h2 *ngIf="user_name != null">{{user_name}}</h2>
+        </div>
+        <div mat-dialog-content class="mb-3">
+            <ng-container *ngIf="error">
+                <div class="text-danger">{{error}}</div>
+            </ng-container>
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input matInput formControlName="title" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.controls.title?.errors }"/>
+                    <div class="text-danger" *ngIf="form.controls.title?.errors?.required">Title is required</div>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select matInput formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': form.controls.category?.errors }">
+                        <ng-container *ngFor="let cat of categories">
+                            <option value="{{cat}}">
+                                {{cat}}
+                            </option>
+                        </ng-container>
+                    </select>
+                    <div class="text-danger" *ngIf="form.controls.category?.errors?.required">Category is required</div>
+                </div>
+                <div class="form-group">
+                    <label>IMDB Link</label>
+                    <input matInput formControlName="imdb" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.controls.imdb?.errors }"/>
+                    <div class="text-danger" *ngIf="form.controls.imdb?.errors?.required">IMDB Link is required</div>
+                </div>
+                <div class="form-group">
+                    <label>Other Link</label>
+                    <input matInput formControlName="link" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.controls.link?.errors }"/>
+                    <div class="text-danger" *ngIf="form.controls.link?.errors?.required">Other Link is required</div>
+                </div>
+            </form>
+        </div>
+        
+        <div mat-dialog-actions align="end">
+            <button class="btn btn-cancel" (click)="close(null)"><mat-icon svgIcon="x" aria-hidden="false"></mat-icon>Cancel</button>
+          <button class="btn btn-primary" [disabled]="!form.valid" (click)="submit()" cdkFocusInitial><mat-icon svgIcon="check" aria-hidden="false"></mat-icon>Add</button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="sending">
+        <h1>Sending...</h1>
+    </ng-container>
+
+</div>
