@@ -1,0 +1,32 @@
+[
+    {
+        "title":"The Shawshank Redemption",
+        "category":"Drama",
+        "imdb":"https://www.imdb.com/title/tt0111161/"
+    },
+    {
+        "title":"The Godfather",
+        "category":"Drama",
+        "imdb":"https://www.imdb.com/title/tt0068646/"
+    },
+    {
+        "title":"The Dark Knight",
+        "category":"Action",
+        "imdb":"https://www.imdb.com/title/tt0468569/"
+    },
+    {
+        "title":"Fight Club",
+        "category":"Drama",
+        "imdb":"https://www.imdb.com/title/tt0137523/"
+    },
+    {
+        "title":"Forrest Gump",
+        "category":"Drama",
+        "imdb":"https://www.imdb.com/title/tt0109830/"
+    },
+    {
+        "title":"The Matrix",
+        "category":"Action",
+        "imdb":"https://www.imdb.com/title/tt0133093/"
+    }
+]

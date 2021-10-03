@@ -1,0 +1,45 @@
+Home Test - Movie App - Advanced
+You must write a responsive website (also adapted for mobile) to manage a list of movies using 8 Angular and NodeJS
+Finally, upload the site to GITHUB with operating instructions and send the link to email.
+The site consists of 2 screens and a server-side code:
+
+Server side
+REST API service with NodeJS when all Endpoints start with API
+For example -
+GET http: // localhost: 3000 / api / movies
+DELETE http: // localhost: 3000 / api / movie
+GET http: // localhost: 3000 / api / categories
+
+and so'
+
+The initial information of the site is uploaded once from a json file, which contains several predefined movies,
+All information operations are updated in the server memory
+
+Customer side
+Login screen - login /
+
+By entering a name and password admin \ admin you reach the edit screen at secure /
+Otherwise you receive an "You are not authorized" error message
+
+Edit screen - secure /
+
+The movies are arranged on the left side by the date of addition that the newest is first
+When you click Add Movie, a Models / Screen window opens with input fields and an OK / Cancel button that includes
+Inside:
+• Movie title - free text 30 characters in English only
+• Category - list of values ​​(dropdown), action, drama, comedy, other
+Link to IMDB (links to imdb can only be entered (
+• Additional link to the movie poster) You can enter links to imdb and the image only (
+when are
+• All fields are required
+• Movie cannot be added twice (only by movie name (
+• You cannot add a movie whose links do not work
+Deleting a movie is done by pressing X
+Note! In the list of categories, only the categories of the movies in the list are displayed) if there is no 'action' movie at the moment
+In the list, the category will not be displayed (.
+
+.IMDB When you click on the name of the movie \ on the poster it opens in
+
+Bonus: embed the project in dockerfile
+
+Successfully!

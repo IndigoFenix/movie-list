@@ -1,0 +1,32 @@
+{
+  "name": "movies-backend",
+  "version": "1.0.0",
+  "description": "Backend for the movie app demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles",
+    "start": "node index.js"
+  },
+  "author": "Daniel Nadel",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-busboy": "0.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "jest": "^27.2.4",
+    "md5": "^2.3.0",
+    "mongoose": "^6.0.8",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "redis": "^3.1.2",
+    "redis-server": "^1.2.2"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)"
+    ]
+  }
+}
