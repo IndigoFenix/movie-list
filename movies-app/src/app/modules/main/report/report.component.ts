@@ -26,6 +26,7 @@ export class ReportComponent implements OnInit {
   public is_admin: Boolean = false;
   public categories = [];
   public category: string | null = null;
+  public sidebar_open: Boolean = false;
 
   public authorized: Boolean = false;
 
@@ -78,6 +79,7 @@ export class ReportComponent implements OnInit {
 
   openCategory(category:string | null){
     this.category = category;
+    this.sidebar_open = false;
     this.search();
   }
 
@@ -103,6 +105,7 @@ export class ReportComponent implements OnInit {
   }
 
   openNewEntryDialog(): void {
+    this.sidebar_open = false;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
     };

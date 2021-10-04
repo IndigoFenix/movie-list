@@ -47,7 +47,7 @@ app.use(busboy());
 
 app.use(bodyParser.json({limit: '10000000mb'}));
 app.use(bodyParser.urlencoded({limit: '10000000mb', extended: true}));
-app.set('appName', 'calorie-tracker');
+app.set('appName', 'movie-app');
 
 app.set('views', path.join(__dirname + '/HTML'));
 app.engine('html', require('ejs').renderFile);

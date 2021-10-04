@@ -6,6 +6,7 @@ import { ReportComponent } from './report/report.component';
 import { AddEntryComponent } from './add-entry/add-entry.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditEntryComponent } from './edit-entry/edit-entry.component';
+import { MaterialModule } from '@core/material/material.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EditEntryComponent } from './edit-entry/edit-entry.component';
     CommonModule,
     MainRoutingModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class MainModule { }
