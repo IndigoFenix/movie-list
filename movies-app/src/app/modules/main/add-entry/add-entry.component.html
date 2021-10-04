@@ -9,12 +9,14 @@
                 <div class="text-danger">{{error}}</div>
             </ng-container>
             <form [formGroup]="form">
-                <div class="form-group">
+                <div class="form-group mb-2">
                     <label>Title</label>
                     <input matInput formControlName="title" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.controls.title?.errors }"/>
                     <div class="text-danger" *ngIf="form.controls.title?.errors?.required">Title is required</div>
+                    <div class="text-danger" *ngIf="form.controls.title?.errors?.notEnglish">Invalid character - English only</div>
+                    <div class="text-danger" *ngIf="form.controls.title?.errors?.maxlength">30 characters max</div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-2">
                     <label>Category</label>
                     <select matInput formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': form.controls.category?.errors }">
                         <ng-container *ngFor="let cat of categories">
@@ -25,19 +27,21 @@
                     </select>
                     <div class="text-danger" *ngIf="form.controls.category?.errors?.required">Category is required</div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-2">
                     <label>IMDB Link</label>
                     <input matInput formControlName="imdb" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.controls.imdb?.errors }"/>
                     <div class="text-danger" *ngIf="form.controls.imdb?.errors?.required">IMDB Link is required</div>
                     <div class="text-danger" *ngIf="form.controls.imdb?.errors?.notIMDBLink">Not a valid IMDB link</div>
                 </div>
                 <div class="form-group">
-                    <label>Poster Link</label>
-                    <input matInput formControlName="poster" type="text" class="form-control" (change)="imageChange($event)" [ngClass]="{ 'is-invalid': form.controls.poster?.errors || !image_valid }"/>
-                    <div class="text-danger" *ngIf="form.controls.poster?.errors?.required">Poster Link is required</div>
-                    <div class="text-danger" *ngIf="!form.controls.poster?.errors?.required && !image_valid">Not a valid poster link</div>
+                    <label>Poster URL</label>
+                    <input matInput formControlName="poster" type="text" class="form-control" (ngModelChange)="imageChange($event)" [ngClass]="{ 'is-invalid': form.controls.poster?.errors || !image_updated || !image_valid }"/>
+                    <div class="text-danger" *ngIf="form.controls.poster?.errors?.required">Poster URL is required</div>
+                    <div class="text-danger" *ngIf="form.controls.poster?.errors?.notImageLink">Not an image url</div>
+                    <div class="text-warning" *ngIf="!form.controls.poster?.errors?.required && !form.controls.poster?.errors?.notImageLink && !image_updated">Checking image</div>
+                    <div class="text-danger" *ngIf="!form.controls.poster?.errors?.required && !form.controls.poster?.errors?.notImageLink && image_updated && !image_valid">Image url is broken</div>
                 </div>
-                <ng-container *ngIf="!form.controls.poster?.errors?.required">
+                <ng-container *ngIf="!form.controls.poster?.errors?.required && !form.controls.poster?.errors?.notImageLink">
                     <img class="image-preview" [src]="form.controls.poster.value" (error)="imageError($event)" (load)="imageLoaded($event)">
                 </ng-container>
             </form>
@@ -45,7 +49,7 @@
         
         <div mat-dialog-actions align="end">
             <button class="btn btn-cancel" (click)="close(null)"><mat-icon class="mx-2" svgIcon="x" aria-hidden="false"></mat-icon>Cancel</button>
-          <button class="btn btn-primary" [disabled]="!form.valid || !image_valid" (click)="submit()" cdkFocusInitial><mat-icon class="mx-2" svgIcon="check" aria-hidden="false"></mat-icon>Add</button>
+          <button class="btn btn-primary" [disabled]="!form.valid || !image_updated || !image_valid" (click)="submit()" cdkFocusInitial><mat-icon class="mx-2" svgIcon="check" aria-hidden="false"></mat-icon>Add</button>
         </div>
     </ng-container>
     <ng-container *ngIf="sending">

@@ -21,7 +21,8 @@
             <div class="category p-3" [ngClass]="{'active':category == cat}" (click)="openCategory(cat)">{{cat}}</div>
         </ng-container>
     </div>
-    <div class="container pt-3">
+    <div class="mobile-hide pt-3"></div>
+    <div class="container">
         <div class="row">
             <div class="col-3 mobile-hide">
                 <div class="header">
@@ -36,18 +37,23 @@
                 </ng-container>
             </div>
             <div class="col-9 mobile-full">
-                <h1>Movies</h1>
+                <h1 *ngIf="!category">All Movies</h1>
+                <h1 *ngIf="category">Movies - {{category}}</h1>
                 <div class="row">
                     <ng-container *ngFor="let entry of entries">
                         <ng-container *ngIf="!category || entry.category == category">
                             <div class="col-4 mobile-full">
                                 <div class="movie mb-3 p-2">
-                                    <div class="movie-poster-holder">
+                                    <a href="{{entry.imdb}}" target="_blank" class="movie-poster-holder">
                                         <img class="movie-poster" *ngIf="entry.poster" [src]="sanitizeImageUrl(entry.poster)"/>
-                                    </div>
+                                    </a>
                                     <div class="movie-content p-2">
-                                        {{entry.title}}<br>
-                                        {{entry.category}}
+                                        <div>
+                                            <a href="{{entry.imdb}}" target="_blank">{{entry.title}}</a>
+                                        </div>
+                                        <div>
+                                            <span>{{entry.category}}</span>
+                                        </div>
                                     </div>
                                     <button class="btn btn-danger delete-button" (click)="deleteEntry(entry)"><mat-icon svgIcon="x" aria-hidden="false"></mat-icon></button>
                                 </div>
