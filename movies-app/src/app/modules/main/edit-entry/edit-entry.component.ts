@@ -26,7 +26,7 @@ export class EditEntryComponent implements OnInit {
     console.log('Movie data',this.entry);
     this.form = this.fb.group({
       imdb: [this.entry.imdb,Validators.required],
-      link: [this.entry.link,Validators.required]
+      poster: [this.entry.poster,Validators.required]
     })
   }
 

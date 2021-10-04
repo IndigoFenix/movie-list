@@ -6,7 +6,7 @@ exports.create = async(body) => {
 	if (!body.title) return {'success':false,'error':400,'message':'title is required'};
 	if (!body.category) return {'success':false,'error':400,'message':'category is required'};
 	if (!body.imdb) return {'success':false,'error':400,'message':'imdb is required'};
-	if (!body.link) return {'success':false,'error':400,'message':'link is required'};
+	if (!body.poster) return {'success':false,'error':400,'message':'poster is required'};
 
     let existing = await movieRepository.findByTitle(body.title);
     if (existing){
@@ -17,7 +17,7 @@ exports.create = async(body) => {
         'title':body.title,
         'category':body.category,
         'imdb':body.imdb,
-        'link':body.link,
+        'poster':body.poster,
     });
     
     return {'success':true,'result':movie};

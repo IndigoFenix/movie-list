@@ -13,9 +13,9 @@
                     <div class="text-danger" *ngIf="form.controls.imdb?.errors?.required">IMDB Link is required</div>
                 </div>
                 <div class="form-group">
-                    <label>Other Link</label>
-                    <input matInput formControlName="link" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.controls.link?.errors }"/>
-                    <div class="text-danger" *ngIf="form.controls.link?.errors?.required">Other Link is required</div>
+                    <label>Poster Link</label>
+                    <input matInput formControlName="poster" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.controls.poster?.errors }"/>
+                    <div class="text-danger" *ngIf="form.controls.poster?.errors?.required">Poster Link is required</div>
                 </div>
             </form>
         </div>

@@ -9,7 +9,7 @@ exports.create = async(data) => {
 }
 
 exports.findByTitle = async(title) => {
-    let result = await User.findOne({'title':name});
+    let result = await Movie.findOne({'title':title});
     return result;
 }
 

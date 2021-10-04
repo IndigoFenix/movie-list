@@ -3,6 +3,6 @@ export interface Movie {
     'category':string;
     'title':string;
     'imdb':string | null;
-    'link':string | null;
+    'poster':string | null;
     'date':Date;
 }

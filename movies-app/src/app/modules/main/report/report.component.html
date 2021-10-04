@@ -26,21 +26,24 @@
             </div>
             <div class="col-9">
                 <h1>Movies</h1>
-                <table class="w-100">
-                    <tr *ngFor="let entry of entries">
-                        <td>{{entry.title}}</td>
-                        <td>{{entry.category}}</td>
-                        <td>
-                            <a *ngIf="entry.imdb" href="{{entry.imdb}}">IMDB Link</a>
-                            <span *ngIf="!entry.imdb">No IMDB Link</span>
-                        </td>
-                        <td>
-                            <a *ngIf="entry.link" href="{{entry.link}}">Other Link</a>
-                            <span *ngIf="!entry.imdb">No Other Link</span>
-                        </td>
-                        <td><button class="btn btn-danger" (click)="deleteEntry(entry)">X</button></td>
-                    </tr>
-                </table>
+                <div class="row">
+                    <ng-container *ngFor="let entry of entries">
+                        <ng-container *ngIf="!category || entry.category == category">
+                            <div class="col-4 mobile-full">
+                                <div class="movie mb-3 p-2">
+                                    <div class="movie-poster-holder">
+                                        <img class="movie-poster" *ngIf="entry.poster" [src]="sanitizeImageUrl(entry.poster)"/>
+                                    </div>
+                                    <div class="movie-content p-2">
+                                        {{entry.title}}<br>
+                                        {{entry.category}}
+                                    </div>
+                                    <button class="btn btn-danger delete-button" (click)="deleteEntry(entry)">X</button>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
             </div>
         </div>
     </div>

@@ -2,31 +2,37 @@
     {
         "title":"The Shawshank Redemption",
         "category":"Drama",
-        "imdb":"https://www.imdb.com/title/tt0111161/"
+        "imdb":"https://www.imdb.com/title/tt0111161/",
+        "poster":"https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL75_UX190_CR0,0,190,281_.jpg"
     },
     {
         "title":"The Godfather",
         "category":"Drama",
-        "imdb":"https://www.imdb.com/title/tt0068646/"
+        "imdb":"https://www.imdb.com/title/tt0068646/",
+        "poster":"https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY281_CR4,0,190,281_.jpg"
     },
     {
         "title":"The Dark Knight",
         "category":"Action",
-        "imdb":"https://www.imdb.com/title/tt0468569/"
+        "imdb":"https://www.imdb.com/title/tt0468569/",
+        "poster":"https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX190_CR0,0,190,281_.jpg"
     },
     {
         "title":"Fight Club",
         "category":"Drama",
-        "imdb":"https://www.imdb.com/title/tt0137523/"
+        "imdb":"https://www.imdb.com/title/tt0137523/",
+        "poster":"https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UX190_CR0,2,190,281_.jpg"
     },
     {
         "title":"Forrest Gump",
         "category":"Drama",
-        "imdb":"https://www.imdb.com/title/tt0109830/"
+        "imdb":"https://www.imdb.com/title/tt0109830/",
+        "poster":"https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_QL75_UY281_CR2,0,190,281_.jpg"
     },
     {
         "title":"The Matrix",
         "category":"Action",
-        "imdb":"https://www.imdb.com/title/tt0133093/"
+        "imdb":"https://www.imdb.com/title/tt0133093/",
+        "poster":"https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX190_CR0,2,190,281_.jpg"
     }
 ]

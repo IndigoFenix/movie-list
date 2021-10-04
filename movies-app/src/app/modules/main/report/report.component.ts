@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Movie } from '@core/models/movie';
 import { User } from '@core/models/User';
@@ -35,7 +36,8 @@ export class ReportComponent implements OnInit {
     private entriesService:EntriesService,
     private router: Router,
     private dialog:MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private sanitizer: DomSanitizer
   ) {
   }
 
@@ -80,34 +82,15 @@ export class ReportComponent implements OnInit {
   }
 
   search(){
-    if (this.category){
-      let category_has_one = false;
-      for (let i=0;i<this.entries.length;i++){
-        if (this.entries[i].category === this.category){
-          category_has_one = true;
-          break;
-        }
-      }
-      if (!category_has_one){
-        this.category = null;
-        this.getEntries({}).then(result=>{
-          this.entries = result;
-          this.setCategories();
-        });
-      } else {
-        this.getEntries({'category':this.category}).then(result=>{
-          this.entries = result;
-        });
-      }
-    } else {
-      this.getEntries({}).then(result=>{
-        this.entries = result;
-        this.setCategories();
-      });
-    }
+    this.getEntries({}).then(result=>{
+      this.entries = result;
+      this.setCategories();
+    });
   }
 
-  //Gets all movies
+  //Gets movies
+  //It is possible to put a query for a particular category here, for example { 'category':'Action' }.
+  //But this is not necessary for the demo.
   getEntries(query:any):Promise<Array<Movie>>{
     return new Promise((resolve,reject)=>{
       this.entriesService.all(query).then(entries=>{
@@ -136,6 +119,10 @@ export class ReportComponent implements OnInit {
     this.entriesService.delete(movie._id).then(result => {
       this.search();
     })
+  }
+
+  sanitizeImageUrl(url:any) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   logout(){

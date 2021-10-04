@@ -65,7 +65,7 @@ exports.update = async(req, res, next) => {
 			return res.status(400).json({'message':'Not logged in!'});
 		} else if (current_user.admin === true) {
 			let update = {};
-			let fields = ['admin','limits.calorie_daily','limits.price_monthly'];
+			let fields = [];
 			for (let i=0;i<fields.length;i++){
 				if (req.body[fields[i]] !== undefined){
 					update[fields[i]] = req.body[fields[i]];
@@ -73,14 +73,6 @@ exports.update = async(req, res, next) => {
 			}
 			let result = await userRepository.updateOne({'_id':req.params.id},update);
 
-            if (result){
-                //Also update the cache. A bit sloppy here, but should work.
-                let cacheduser = req.cache.active_users.get(req.params.id);
-                if (update.admin !== undefined) cacheduser.admin = update.admin;
-                if (update['limits.calorie_daily'] !== undefined) cacheduser.limits.calorie_daily = update['limits.calorie_daily'];
-                if (update['limits.price_monthly'] !== undefined) cacheduser.limits.calorie_daily = update['limits.price_monthly'];
-                req.cache.active_users.set(req.params.id,cacheduser);
-            }
 			return res.status(200).json(result);
 		} else {
 			return res.status(400).json({'message':'Only admins can edit users!'});
