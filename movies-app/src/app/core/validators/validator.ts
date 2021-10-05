@@ -39,7 +39,7 @@ export function isIMDBLink(): ValidatorFn {
       }
 
       let value = control.value as string
-      let ok = value.match(/^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9-]+$/);
+      let ok = value.match(/^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9\s-]+$/);
       
       if (ok) return null;
       else return { 'notEnglish' : true }
