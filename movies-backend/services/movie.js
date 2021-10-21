@@ -8,12 +8,12 @@ exports.create = async(body) => {
 	if (!body.imdb) return {'success':false,'error':400,'message':'imdb is required'};
 	if (!body.poster) return {'success':false,'error':400,'message':'poster is required'};
 
-    let existing = await movieRepository.findByTitle(body.title);
+    const existing = await movieRepository.findByTitle(body.title);
     if (existing){
         return {'success':false,'error':500,'message':'A movie with this title already exists'};
     }
 
-    let movie = await movieRepository.create({
+    const movie = await movieRepository.create({
         'title':body.title,
         'category':body.category,
         'imdb':body.imdb,
@@ -26,7 +26,7 @@ exports.create = async(body) => {
 exports.get = async(id) => {
 	if (!id) return {'success':false,'error':400,'message':'Id is required'};
 	try {
-		let obj = await movieRepository.findOne(id);
+		const obj = await movieRepository.findOne(id);
 		if (obj) return {'success':true,'result':obj};
 		else return {'success':false,'error':404,'message':'Movie '+id+' not found '};
 	} catch (error) {
@@ -37,8 +37,7 @@ exports.get = async(id) => {
 exports.query = async(query) => {
 	if (!query) return {'success':false,'error':400,'message':'query is required'};
 	try {
-		let obj = await movieRepository.findMany(query);
-        console.log(obj);
+		const obj = await movieRepository.findMany(query);
 		if (obj) return {'success':true,'result':obj};
 		else return {'success':false,'error':404,'message':'No response'};
 	} catch (error) {
@@ -48,15 +47,15 @@ exports.query = async(query) => {
 
 exports.update = async(id,body) => {
 	if (!id) return {'success':false,'error':400,'message':'Id is required'};
-	let update = {};
-	let allowed_fields = ['title','category','imdb','link'];
+	const update = {};
+	const allowed_fields = ['title','category','imdb','link'];
 	for (let i=0;i<allowed_fields.length;i++){
 		if (body[allowed_fields[i]] !== undefined){
 			update[allowed_fields[i]] = body[allowed_fields[i]];
 		}
 	}
 	try {
-		let updated = await movieRepository.updateOne(id,update);
+		const updated = await movieRepository.updateOne(id,update);
 		if (updated) return {'success':true,'result':1};
 		else return {'success':false,'error':404,'message':'Could not update'};
 	} catch (error) {
@@ -68,7 +67,7 @@ exports.delete = async(id) => {
 	if (!id) return {'success':false,'error':400,'message':'Id is required'};
 	
 	try {
-		let deleted = await movieRepository.deleteOne(id);
+		const deleted = await movieRepository.deleteOne(id);
 		if (deleted) return {'success':true,'result':deleted};
 		else return {'success':false,'error':404,'message':'Could not delete'};
 	} catch (error) {

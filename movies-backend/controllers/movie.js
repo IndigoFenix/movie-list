@@ -4,10 +4,10 @@ const movieService = require('../services/movie');
 
 exports.create = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user) return res.status(401).json({'message':'Not logged in'});
 
-		let response = await movieService.create(req.body);
+		const response = await movieService.create(req.body);
 		if (response.success) {
 			res.status(200).json(response.result);
 		} else {
@@ -20,8 +20,8 @@ exports.create = async(req, res, next) => {
 
 exports.all = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
-		let query = {};
+		const current_user = req.current_user;
+		const query = {};
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		}
@@ -30,8 +30,7 @@ exports.all = async(req, res, next) => {
 			if (req.query.category) query.category = req.query.category;
 		}
 
-		let response = await movieService.query(query);
-		console.log(response);
+		const response = await movieService.query(query);
 		if (response.success) {
 			res.status(200).json(response.result);
 		} else {
@@ -46,12 +45,12 @@ exports.all = async(req, res, next) => {
 
 exports.get = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		}
 
-		let response = movieService.get(req.params.id);
+		const response = movieService.get(req.params.id);
 		
 		if (response.success) {
 			res.status(200).json(response.result);
@@ -66,11 +65,11 @@ exports.get = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		} else {
-			let response = movieService.update(req.params.id,req.body);
+			const response = movieService.update(req.params.id,req.body);
 			if (response.success) {
 				res.status(200).json(response.result);
 			} else {
@@ -85,11 +84,11 @@ exports.update = async(req, res, next) => {
 
 exports.delete = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		} else {
-			let response = await movieService.delete(req.params.id);
+			const response = await movieService.delete(req.params.id);
 			if (response.success) {
 				res.status(200).json(response.result);
 			} else {

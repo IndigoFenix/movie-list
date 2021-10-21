@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit(){
-    let value = this.form.value;
-    console.log('value',value);
+    const value = this.form.value;
     this.sending = true;
     this.authService.login(value.name,value.pass).then(result=>{
       this.router.navigate(['/']);
@@ -42,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   signup(){
-    let value = this.form.value;
+    const value = this.form.value;
     this.sending = true;
     this.authService.signup(value.name,value.pass).then(result=>{
       this.sending = false;

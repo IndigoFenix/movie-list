@@ -65,9 +65,8 @@ export class AddEntryComponent implements OnInit {
   }
 
   submit(){
-    let value = this.form.value;
     this.sending = true;
-    this.entriesService.add(value).then(result=>{
+    this.entriesService.add(this.form.value).then(result=>{
       this.dialogRef.close(result);
     },error=>{
       this.sending = false;

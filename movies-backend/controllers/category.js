@@ -4,10 +4,10 @@ const categoryService = require('../services/category');
 
 exports.create = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user) return res.status(401).json({'message':'Not logged in'});
 
-		let response = await categoryService.create(req.body);
+		const response = await categoryService.create(req.body);
 		if (response.success) {
 			res.status(200).json(response.result);
 		} else {
@@ -20,12 +20,12 @@ exports.create = async(req, res, next) => {
 
 exports.all = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		}
 
-		let response = await categoryService.query({});
+		const response = await categoryService.query({});
 		if (response.success) {
 			res.status(200).json(response.result);
 		} else {
@@ -38,11 +38,11 @@ exports.all = async(req, res, next) => {
 
 exports.delete = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		} else {
-			let response = await categoryService.deleteOne({'_id':req.params.id});
+			const response = await categoryService.deleteOne({'_id':req.params.id});
             if (response.success) {
                 res.status(200).json(response.result);
             } else {

@@ -7,8 +7,8 @@ const movies = require('../data/movies.json');
 
 exports.populate = async() => {
     await this.delete();
-    for (let i=0;i<categories.length;i++){
-        let category = await categoryRepository.create(categories[i]);
+    for (const i=0;i<categories.length;i++){
+        const category = await categoryRepository.create(categories[i]);
     }
     for (let i=0;i<movies.length;i++){
         await movieRepository.create(movies[i]);

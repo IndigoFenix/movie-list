@@ -112,7 +112,6 @@ export class ReportComponent implements OnInit {
     const dialogRef = this.dialog.open(AddEntryComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        let movie = result as Movie;
         this.search();
       }
     });

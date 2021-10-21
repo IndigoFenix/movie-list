@@ -38,9 +38,8 @@ export class EditEntryComponent implements OnInit {
   }
 
   submit(){
-    let value = this.form.value;
     this.sending = true;
-    this.entriesService.update(this.entry._id,value).then(result=>{
+    this.entriesService.update(this.entry._id,this.form.value).then(result=>{
       this.dialogRef.close(result);
     },error=>{
       this.sending = false;

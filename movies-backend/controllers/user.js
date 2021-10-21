@@ -4,7 +4,7 @@ const userService = require('../services/user');
 
 exports.create = async(req, res, next) => {
 	try {
-		let response = await userService.create(req.body);
+		const response = await userService.create(req.body);
 		if (response.success) {
 			res.status(200).json(response.result);
 		} else {
@@ -17,14 +17,14 @@ exports.create = async(req, res, next) => {
 
 exports.get = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		} else if (current_user.admin === false && current_user._id != req.params.id) {
 			return res.status(403).json({'message':'No permission!'});
 		}
 
-		let response = await userService.get(req.params.id);
+		const response = await userService.get(req.params.id);
 		if (response.success) {
 			res.status(200).json(response.result);
 		} else {
@@ -37,14 +37,14 @@ exports.get = async(req, res, next) => {
 
 exports.all = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(401).json({'message':'Not logged in!'});
 		} else if (current_user.admin === false && current_user._id != req.params.id) {
 			return res.status(403).json({'message':'No permission!'});
 		}
 
-		let response = await userService.query({});
+		const response = await userService.query({});
 		
 		if (response.success) {
 			res.status(200).json(response.result);
@@ -60,18 +60,18 @@ exports.all = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(400).json({'message':'Not logged in!'});
 		} else if (current_user.admin === true) {
-			let update = {};
-			let fields = [];
+			const update = {};
+			const fields = [];
 			for (let i=0;i<fields.length;i++){
 				if (req.body[fields[i]] !== undefined){
 					update[fields[i]] = req.body[fields[i]];
 				}
 			}
-			let result = await userRepository.updateOne({'_id':req.params.id},update);
+			const result = await userRepository.updateOne({'_id':req.params.id},update);
 
 			return res.status(200).json(result);
 		} else {
@@ -85,15 +85,14 @@ exports.update = async(req, res, next) => {
 
 exports.delete = async(req, res, next) => {
 	try {
-		let current_user = req.current_user;
-		let query = {};
+		const current_user = req.current_user;
 		if (!current_user){
 			return res.status(400).json({'message':'Not logged in!'});
 		} else if (current_user.admin === false) {
 			return res.status(400).json({'message':'No permission!'});
 		}
 
-		let result = await userRepository.deleteOne({'_id':req.params.id});
+		const result = await userRepository.deleteOne({'_id':req.params.id});
 
 		res.status(200).json(result);
 	} catch (error) {

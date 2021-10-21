@@ -4,7 +4,7 @@ const populateService = require('../services/populate');
 
 exports.populate = async(req, res, next) => {
 	try {
-		let response = await populateService.populate();
+		const response = await populateService.populate();
 		if (response.success) {
 			res.status(200).json({'OK':true});
 		} else {
